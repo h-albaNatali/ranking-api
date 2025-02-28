@@ -109,8 +109,7 @@ GET http://localhost:8080/ranking-api/public/ranking/1
 🟥 **Se o movimento não existir (`404 Not Found`):**
 ```json
 {
-    "movement_name": "Movimento não encontrado",
-    "error": "Nenhum ranking encontrado para esse movimento."
+    "error": "Movimento não encontrado."
 }
 ```
 
@@ -132,7 +131,7 @@ Caso o usuário tente acessar uma **rota inválida**, a API retorna:
 - Utilizamos `prepare()` e `bindParam()` com `PDO::PARAM_INT`, garantindo que os inputs do usuário sejam seguros.
 
 ✅ **Tratamento de Erros**
-- Se o movimento não existir, retorna `404 Not Found`.
+- Se o movimento não existir, retorna `404 Not Found` com a mensagem correta.
 - Se a rota for inválida, retorna um JSON informando.
 
 ---
