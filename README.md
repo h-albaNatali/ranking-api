@@ -10,6 +10,8 @@ Esta é uma API RESTful construída com **PHP** e **Slim Framework 4** para gere
 - **Composer**
 - **JWT (JSON Web Token) para Autenticação**
 - **Dotenv para Variáveis de Ambiente**
+- **Monolog para Log de Erros**
+- **APCu para Cache**
 
 ---
 
@@ -38,7 +40,9 @@ CREATE DATABASE ranking_db;
 ```sql
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE movement (
@@ -79,13 +83,39 @@ JWT_SECRET=chave_secreta_super_segura
 php -S localhost:8080 -t public
 ```
 Agora, a API estará disponível em:
-👉 `http://localhost:8080/ranking-api/public/ranking/`
+👉 `http://localhost:8080/ranking-api/public/`
 
 ---
 
 ## 📌 **Endpoints Disponíveis**
 
-### 📌 **1. Autenticação**
+### 📌 **1. Registro de Usuário**
+**`POST /register`**
+
+📌 Registra um novo usuário na API.
+
+🔹 **Exemplo de Request:**
+```sh
+POST http://localhost:8080/ranking-api/public/register
+Content-Type: application/json
+
+{
+    "name": "João Silva",
+    "email": "joao@email.com",
+    "password": "senha123"
+}
+```
+
+🔹 **Exemplo de Response (`201 Created`):**
+```json
+{
+    "message": "Usuário registrado com sucesso."
+}
+```
+
+---
+
+### 📌 **2. Autenticação**
 **`POST /login`**
 
 📌 Gera um token JWT para acesso aos endpoints protegidos.
@@ -93,6 +123,12 @@ Agora, a API estará disponível em:
 🔹 **Exemplo de Request:**
 ```sh
 POST http://localhost:8080/ranking-api/public/login
+Content-Type: application/json
+
+{
+    "email": "joao@email.com",
+    "password": "senha123"
+}
 ```
 
 🔹 **Exemplo de Response (`200 OK`):**
@@ -104,7 +140,7 @@ POST http://localhost:8080/ranking-api/public/login
 
 ---
 
-### 📌 **2. Obter Ranking de um Movimento (Autenticado)**
+### 📌 **3. Obter Ranking de um Movimento (Autenticado)**
 **`GET /ranking/{movement_id}`**
 
 📌 Retorna o ranking de um movimento, com **usuários ordenados por recorde**.

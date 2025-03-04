@@ -21,7 +21,7 @@ class RankingController {
     public function getRanking(Request $request, Response $response, array $args): Response {
         if (!Auth::verifyToken($request)) {
             return $this->jsonResponse($response, ["error" => "Acesso não autorizado."], 401);
-        }
+        }        
 
         $movement_id = filter_var($args['movement_id'], FILTER_VALIDATE_INT);
         if (!$movement_id) {
