@@ -5,20 +5,18 @@ use PDO;
 use PDOException;
 
 class Database {
-    private $host = "localhost"; 
-    private $db_name = "ranking_db"; 
-    private $username = "root"; 
-    private $password = ""; 
     private $conn;
 
     public function connect() {
         $this->conn = null;
 
         try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $dsn = sprintf("mysql:host=%s;dbname=%s", getenv('DB_HOST'), getenv('DB_NAME'));
+            $this->conn = new PDO($dsn, getenv('DB_USER'), getenv('DB_PASS'));
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Erro na conexão: " . $e->getMessage());
+            error_log("Erro na conexão: " . $e->getMessage());
+            die("Erro interno no servidor.");
         }
 
         return $this->conn;
