@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Middleware;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -13,40 +12,52 @@ class AuthMiddleware {
         $headers = $request->getHeader('Authorization');
 
         if (!$headers || empty($headers[0])) {
-            return $this->unauthorizedResponse($request, "Token JWT ausente.");
+            return $this->unauthorizedResponse("Token JWT ausente.");
         }
 
-        $jwt = str_replace('Bearer ', '', filter_var($headers[0], FILTER_SANITIZE_STRING));
+        $jwt = str_replace('Bearer ', '', $headers[0]);
+        
 
         try {
             $secret = $_ENV['JWT_SECRET'] ?? 'chave_secreta_super_segura';
             $decoded = JWT::decode($jwt, new Key($secret, 'HS256'));
 
-            $sanitizedParams = $this->sanitizeInputs($request->getParsedBody());
-            $request = $request->withParsedBody($sanitizedParams);
+            $parsedBody = $request->getParsedBody();
+
+            if (!is_array($parsedBody)) {
+                $parsedBody = [];
+            }
+
+            $sanitizedBody = $this->sanitizeInputs($parsedBody);
+
+            $request = $request->withParsedBody($sanitizedBody);
 
             return $handler->handle($request);
         } catch (\Exception $e) {
-            return $this->unauthorizedResponse($request, "Token inválido: " . $e->getMessage());
+            return $this->unauthorizedResponse("Token inválido: " . $e->getMessage());
         }
-    }
-
-    private function unauthorizedResponse(Request $request, string $message): ResponseInterface {
-        $responseFactory = new \Slim\Psr7\Factory\ResponseFactory();
-        $response = $responseFactory->createResponse(401);
-        $response->getBody()->write(json_encode(["error" => $message]));
-        return $response->withHeader('Content-Type', 'application/json');
     }
 
     private function sanitizeInputs(array $data): array {
         $sanitized = [];
+
         foreach ($data as $key => $value) {
-            if (is_array($value)) {
+            if (is_string($value)) {
+                $sanitized[$key] = htmlspecialchars(strip_tags(trim($value)), ENT_QUOTES, 'UTF-8');
+            } elseif (is_array($value)) {
                 $sanitized[$key] = $this->sanitizeInputs($value);
             } else {
-                $sanitized[$key] = filter_var($value, FILTER_SANITIZE_STRING);
+                $sanitized[$key] = $value;
             }
         }
+
         return $sanitized;
+    }
+
+    private function unauthorizedResponse(string $message): ResponseInterface {
+        $responseFactory = new \Slim\Psr7\Factory\ResponseFactory();
+        $response = $responseFactory->createResponse(401);
+        $response->getBody()->write(json_encode(["error" => $message]));
+        return $response->withHeader('Content-Type', 'application/json');
     }
 }

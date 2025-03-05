@@ -5,38 +5,35 @@ namespace App\Controllers;
 use App\Database\Database;
 use App\Security\Auth;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use PDO;
 use Exception;
 
 class AuthController {
-    public function register($request, $response) {
+    public function register(Request $request, Response $response) {
         $data = $request->getParsedBody();
 
-    
         if (!isset($data['name'], $data['email'], $data['password']) || 
             empty(trim($data['name'])) || empty(trim($data['email'])) || empty(trim($data['password']))) {
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Todos os campos são obrigatórios."]));
+            return $this->jsonResponse($response, ["error" => "Todos os campos são obrigatórios."], 400);
         }
 
         if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Email inválido."]));
+            return $this->jsonResponse($response, ["error" => "Email inválido."], 400);
         }
 
         if (strlen($data['password']) < 6) {
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "A senha deve ter pelo menos 6 caracteres."]));
+            return $this->jsonResponse($response, ["error" => "A senha deve ter pelo menos 6 caracteres."], 400);
         }
 
         $db = Database::getInstance()->getConnection();
 
-    
         $stmt = $db->prepare("SELECT id FROM user_api WHERE email = :email");
         $stmt->execute(['email' => $data['email']]);
 
         if ($stmt->fetch()) {
-            $response->getBody()->write(json_encode(["error" => "Email já cadastrado."]));
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+            return $this->jsonResponse($response, ["error" => "Email já cadastrado."], 400);
         }
-        
 
         try {
             $stmt = $db->prepare("INSERT INTO user_api (name, email, password) VALUES (:name, :email, :password)");
@@ -46,32 +43,40 @@ class AuthController {
                 'password' => password_hash($data['password'], PASSWORD_BCRYPT)
             ]);
 
-            $response->getBody()->write(json_encode(['message' => 'Usuário registrado com sucesso.']));
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(201);
+            return $this->jsonResponse($response, ['message' => 'Usuário registrado com sucesso.'], 201);
         } catch (Exception $e) {
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(500)->write(json_encode(["error" => "Erro interno no servidor."]));
+            return $this->jsonResponse($response, ["error" => "Erro interno no servidor."], 500);
         }
     }
 
-    public function login($request, $response) {
+    public function login(Request $request, Response $response) {
+        session_start(); 
         $data = $request->getParsedBody();
 
         if (!isset($data['email'], $data['password']) || empty(trim($data['email'])) || empty(trim($data['password']))) {
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Email e senha são obrigatórios."]));
+            return $this->jsonResponse($response, ["error" => "Email e senha são obrigatórios."], 400);
         }
+
+        $email = trim($data['email']);
+        $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
         $db = Database::getInstance()->getConnection();
 
         $stmt = $db->prepare("SELECT id, password FROM user_api WHERE email = :email");
-        $stmt->execute(['email' => $data['email']]);
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user || !password_verify($data['password'], $user['password'])) {
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(401)->write(json_encode(["error" => "Credenciais inválidas."]));
+            $_SESSION['login_attempts'][$clientIP][$email]++; 
+            return $this->jsonResponse($response, ["error" => "Credenciais inválidas."], 401);
         }
 
         $token = Auth::generateToken($user['id']);
-        $response->getBody()->write(json_encode(["token" => $token]));
-        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+        return $this->jsonResponse($response, ["token" => $token], 200);
+    }
+
+    private function jsonResponse(Response $response, array $data, int $statusCode): Response {
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus($statusCode);
     }
 }
