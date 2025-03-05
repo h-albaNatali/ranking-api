@@ -12,7 +12,7 @@ class AuthController {
     public function register($request, $response) {
         $data = $request->getParsedBody();
 
-        // Sanitização e validação de entrada
+    
         if (!isset($data['name'], $data['email'], $data['password']) || 
             empty(trim($data['name'])) || empty(trim($data['email'])) || empty(trim($data['password']))) {
             return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Todos os campos são obrigatórios."]));
@@ -28,7 +28,7 @@ class AuthController {
 
         $db = Database::getInstance()->getConnection();
 
-        // Verifica se o email já existe
+    
         $stmt = $db->prepare("SELECT id FROM user_api WHERE email = :email");
         $stmt->execute(['email' => $data['email']]);
 
@@ -38,7 +38,6 @@ class AuthController {
         }
         
 
-        // Inserir novo usuário na tabela user_api
         try {
             $stmt = $db->prepare("INSERT INTO user_api (name, email, password) VALUES (:name, :email, :password)");
             $stmt->execute([
@@ -63,7 +62,6 @@ class AuthController {
 
         $db = Database::getInstance()->getConnection();
 
-        // Buscar usuário
         $stmt = $db->prepare("SELECT id, password FROM user_api WHERE email = :email");
         $stmt->execute(['email' => $data['email']]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -72,7 +70,6 @@ class AuthController {
             return $response->withHeader('Content-Type', 'application/json')->withStatus(401)->write(json_encode(["error" => "Credenciais inválidas."]));
         }
 
-        // Gerar Token JWT
         $token = Auth::generateToken($user['id']);
         $response->getBody()->write(json_encode(["token" => $token]));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);

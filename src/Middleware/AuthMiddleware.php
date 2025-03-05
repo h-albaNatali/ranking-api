@@ -16,14 +16,15 @@ class AuthMiddleware {
             return $this->unauthorizedResponse($request, "Token JWT ausente.");
         }
 
-        // Obtém o token sem a palavra "Bearer"
-        $jwt = str_replace('Bearer ', '', $headers[0]);
+        $jwt = str_replace('Bearer ', '', filter_var($headers[0], FILTER_SANITIZE_STRING));
 
         try {
             $secret = $_ENV['JWT_SECRET'] ?? 'chave_secreta_super_segura';
             $decoded = JWT::decode($jwt, new Key($secret, 'HS256'));
 
-            // Se o token for válido, continua para a próxima requisição
+            $sanitizedParams = $this->sanitizeInputs($request->getParsedBody());
+            $request = $request->withParsedBody($sanitizedParams);
+
             return $handler->handle($request);
         } catch (\Exception $e) {
             return $this->unauthorizedResponse($request, "Token inválido: " . $e->getMessage());
@@ -35,5 +36,17 @@ class AuthMiddleware {
         $response = $responseFactory->createResponse(401);
         $response->getBody()->write(json_encode(["error" => $message]));
         return $response->withHeader('Content-Type', 'application/json');
+    }
+
+    private function sanitizeInputs(array $data): array {
+        $sanitized = [];
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $sanitized[$key] = $this->sanitizeInputs($value);
+            } else {
+                $sanitized[$key] = filter_var($value, FILTER_SANITIZE_STRING);
+            }
+        }
+        return $sanitized;
     }
 }

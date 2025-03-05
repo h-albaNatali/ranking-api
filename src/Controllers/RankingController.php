@@ -23,21 +23,20 @@ class RankingController {
 
     public function getRanking($request, $response, $args) {
         $db = Database::getInstance()->getConnection();
-        $movementId = $args['movement_id'];
+        $movementId = filter_var($args['movement_id'], FILTER_VALIDATE_INT);
+
+        if (!$movementId || $movementId <= 0) {
+            $response->getBody()->write(json_encode(["error" => "ID do movimento inválido."]));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+        }
 
         try {
-            // Validação de entrada
-            $this->validateMovementId($movementId);
-
-            // Verifica se o movimento existe
-            $stmtCheckMovement = $db->prepare("SELECT 1 FROM movement WHERE id = :movement_id");
+            $stmtCheckMovement = $db->prepare("SELECT COUNT(*) FROM movement WHERE id = :movement_id");
             $stmtCheckMovement->execute(['movement_id' => $movementId]);
-            $movementExists = $stmtCheckMovement->fetchColumn();
-            if (!$movementExists) {
+            if ($stmtCheckMovement->fetchColumn() == 0) {
                 $response->getBody()->write(json_encode(["error" => "O movimento solicitado não existe."]));
-                return $response->withHeader('Content-Type', 'application/json')
-                                ->withStatus(404);
-                            }
+                return $response->withHeader('Content-Type', 'application/json')->withStatus(404);
+            }
 
             $cacheFile = __DIR__ . "/../../cache/ranking_{$movementId}.json";
             if ($this->cacheEnabled && file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $this->cacheTime) {
@@ -45,35 +44,30 @@ class RankingController {
                 return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
             }
 
-            // Consulta os registros
             $stmt = $db->prepare("SELECT movement.name AS movement_name, 
-                                    user.name, 
-                                    MAX(personal_record.value) AS best_score, 
-                                    MAX(personal_record.date) AS record_date
-                                FROM 
-                                    personal_record
-                                JOIN 
-                                    user ON personal_record.user_id = user.id
-                                JOIN 
-                                    movement ON personal_record.movement_id = movement.id
-                                WHERE 
-                                    personal_record.movement_id = :movement_id
-                                GROUP BY 
-                                    user.id, movement.name
-                                ORDER BY 
-                                    best_score DESC;
-                                ");
+                                        user.name, 
+                                        MAX(personal_record.value) AS best_score, 
+                                        MAX(personal_record.date) AS record_date
+                                    FROM 
+                                        personal_record
+                                    JOIN 
+                                        user ON personal_record.user_id = user.id
+                                    JOIN 
+                                        movement ON personal_record.movement_id = movement.id
+                                    WHERE 
+                                        personal_record.movement_id = :movement_id
+                                    GROUP BY 
+                                        user.id, movement.name
+                                    ORDER BY 
+                                        best_score DESC;");
             $stmt->execute(['movement_id' => $movementId]);
             $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Se não houver registros, retorna mensagem informando que está vazio
             if (empty($ranking)) {
                 $response->getBody()->write(json_encode(["message" => "Nenhum registro encontrado para o movimento solicitado."]));
-                return $response->withHeader('Content-Type', 'application/json')
-                                ->withStatus(200);
-                            }
+                return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+            }
 
-            // Ajustar a posição no ranking para usuários com o mesmo valor ocuparem a mesma posição
             $ranking = $this->adjustRankingPositions($ranking);
 
             if ($this->cacheEnabled) {
@@ -87,25 +81,9 @@ class RankingController {
             $response->getBody()->write(json_encode($ranking));
             return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
         } catch (Exception $e) {
-            $this->logger->error("Erro ao buscar ranking", [
-                'exception' => $e,
-                'movement_id' => $movementId,
-                'query' => 'SELECT movement.name ...',
-                'params' => ['movement_id' => $movementId]
-            ]);
-
-            $message = ($_ENV['APP_ENV'] === 'production') ? 
-                "Erro ao buscar ranking." : 
-                "Erro ao buscar ranking: " . $e->getMessage();
-
-            $response->getBody()->write(json_encode(['error' => $message]));
+            $this->logger->error("Erro ao buscar ranking", ['exception' => $e, 'movement_id' => $movementId]);
+            $response->getBody()->write(json_encode(['error' => 'Erro ao buscar ranking.']));
             return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
-        }
-    }
-
-    private function validateMovementId($movementId) {
-        if (!is_numeric($movementId) || $movementId <= 0) {
-            throw new \InvalidArgumentException("ID do movimento inválido: {$movementId}");
         }
     }
 
