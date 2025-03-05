@@ -1,24 +1,37 @@
 <?php
+
 namespace App\Database;
 
 use PDO;
 use PDOException;
+use Dotenv\Dotenv;
 
 class Database {
-    private $conn;
+    private static $instance = null;
+    private $connection;
 
-    public function connect() {
-        $this->conn = null;
+    private function __construct() {
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
 
         try {
-            $dsn = sprintf("mysql:host=%s;dbname=%s", getenv('DB_HOST'), getenv('DB_NAME'));
-            $this->conn = new PDO($dsn, getenv('DB_USER'), getenv('DB_PASS'));
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $dsn = "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_DATABASE'] . ";port=" . $_ENV['DB_PORT'];
+            $this->connection = new PDO($dsn, $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            error_log("Erro na conexão: " . $e->getMessage());
-            die("Erro interno no servidor.");
+            error_log("Erro ao conectar ao banco de dados: " . $e->getMessage());
+            die(json_encode(["error" => "Falha ao conectar ao banco de dados."]));
         }
+    }
 
-        return $this->conn;
+    public static function getInstance() {
+        if (self::$instance == null) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection() {
+        return $this->connection;
     }
 }

@@ -1,11 +1,12 @@
 <?php
-require_once '../src/Database.php';
 
-$db = new Database();
-$conn = $db->getConnection();
+require __DIR__ . '/../vendor/autoload.php';
 
-if ($conn) {
-    echo "Conexão com o banco de dados bem-sucedida!";
-} else {
-    echo "Falha na conexão com o banco de dados.";
+use App\Database\Database;
+
+try {
+    $db = Database::getInstance()->getConnection();
+    echo "✅ Conexão com o banco de dados estabelecida com sucesso!";
+} catch (Exception $e) {
+    echo "❌ Erro ao conectar ao banco de dados: " . $e->getMessage();
 }

@@ -1,76 +1,80 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Database\Database;
+use App\Security\Auth;
 use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use PDO;
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
+use Exception;
 
 class AuthController {
-    private static $secretKey = "SEU_SECRET_AQUI";
-
-    public function register(Request $request, Response $response): Response {
+    public function register($request, $response) {
         $data = $request->getParsedBody();
-        $name = $data['name'] ?? '';
-        $email = $data['email'] ?? '';
-        $password = $data['password'] ?? '';
 
-        if (!$name || !$email || !$password) {
-            return $this->jsonResponse($response, ["error" => "Preencha todos os campos."], 400);
+        // Sanitização e validação de entrada
+        if (!isset($data['name'], $data['email'], $data['password']) || 
+            empty(trim($data['name'])) || empty(trim($data['email'])) || empty(trim($data['password']))) {
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Todos os campos são obrigatórios."]));
         }
 
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Email inválido."]));
+        }
 
+        if (strlen($data['password']) < 6) {
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "A senha deve ter pelo menos 6 caracteres."]));
+        }
+
+        $db = Database::getInstance()->getConnection();
+
+        // Verifica se o email já existe
+        $stmt = $db->prepare("SELECT id FROM user_api WHERE email = :email");
+        $stmt->execute(['email' => $data['email']]);
+
+        if ($stmt->fetch()) {
+            $response->getBody()->write(json_encode(["error" => "Email já cadastrado."]));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+        }
+        
+
+        // Inserir novo usuário na tabela user_api
         try {
-            $db = new Database();
-            $conn = $db->connect();
+            $stmt = $db->prepare("INSERT INTO user_api (name, email, password) VALUES (:name, :email, :password)");
+            $stmt->execute([
+                'name' => htmlspecialchars(strip_tags($data['name'])),
+                'email' => htmlspecialchars(strip_tags($data['email'])),
+                'password' => password_hash($data['password'], PASSWORD_BCRYPT)
+            ]);
 
-            $stmt = $conn->prepare("INSERT INTO user (name, email, password) VALUES (:name, :email, :password)");
-            $stmt->bindParam(":name", $name, PDO::PARAM_STR);
-            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-            $stmt->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
-            $stmt->execute();
-
-            return $this->jsonResponse($response, ["message" => "Usuário cadastrado com sucesso."]);
-        } catch (\PDOException $e) {
-            return $this->jsonResponse($response, ["error" => "Erro ao cadastrar usuário."], 500);
+            $response->getBody()->write(json_encode(['message' => 'Usuário registrado com sucesso.']));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(201);
+        } catch (Exception $e) {
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(500)->write(json_encode(["error" => "Erro interno no servidor."]));
         }
     }
 
-    public function login(Request $request, Response $response): Response {
+    public function login($request, $response) {
         $data = $request->getParsedBody();
-        $email = $data['email'] ?? '';
-        $password = $data['password'] ?? '';
 
-        if (!$email || !$password) {
-            return $this->jsonResponse($response, ["error" => "E-mail e senha são obrigatórios."], 400);
+        if (!isset($data['email'], $data['password']) || empty(trim($data['email'])) || empty(trim($data['password']))) {
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(400)->write(json_encode(["error" => "Email e senha são obrigatórios."]));
         }
 
-        $db = new Database();
-        $conn = $db->connect();
+        $db = Database::getInstance()->getConnection();
 
-        $stmt = $conn->prepare("SELECT id, password FROM user WHERE email = :email");
-        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-        $stmt->execute();
+        // Buscar usuário
+        $stmt = $db->prepare("SELECT id, password FROM user_api WHERE email = :email");
+        $stmt->execute(['email' => $data['email']]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$user || !password_verify($password, $user['password'])) {
-            return $this->jsonResponse($response, ["error" => "Usuário ou senha inválidos."], 401);
+        if (!$user || !password_verify($data['password'], $user['password'])) {
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(401)->write(json_encode(["error" => "Credenciais inválidas."]));
         }
 
-        $token = JWT::encode([
-            "iat" => time(),
-            "exp" => time() + (60 * 60), // Expira em 1 hora
-            "userId" => $user['id']
-        ], self::$secretKey, 'HS256');
-
-        return $this->jsonResponse($response, ["token" => $token]);
-    }
-
-    private function jsonResponse(Response $response, array $data, int $status = 200): Response {
-        $response->getBody()->write(json_encode($data, JSON_PRETTY_PRINT));
-        return $response->withHeader('Content-Type', 'application/json')->withStatus($status);
+        // Gerar Token JWT
+        $token = Auth::generateToken($user['id']);
+        $response->getBody()->write(json_encode(["token" => $token]));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
     }
 }

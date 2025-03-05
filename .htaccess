@@ -4,3 +4,5 @@ RewriteBase /ranking-api/
 # Redireciona todas as requisições para a pasta public/
 RewriteCond %{REQUEST_URI} !^/public/
 RewriteRule ^(.*)$ public/$1 [L]
+php_flag display_errors on
+php_value error_reporting -1

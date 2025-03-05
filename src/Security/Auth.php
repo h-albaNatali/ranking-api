@@ -1,22 +1,29 @@
 <?php
+
 namespace App\Security;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 class Auth {
-    private static $secretKey = "SEU_SECRET_AQUI";
+    private static $secret = "chave_secreta_super_segura";
 
-    public static function verifyToken($request) {
-        $authHeader = $request->getHeaderLine('Authorization');
-        $token = str_replace('Bearer ', '', $authHeader);
+    public static function generateToken($user_id) {
+        $payload = [
+            'iss' => "localhost",
+            'iat' => time(),
+            'exp' => time() + 3600,
+            'sub' => $user_id
+        ];
 
-        if (!$token) return false;
+        return JWT::encode($payload, self::$secret, 'HS256');
+    }
 
+    public static function validateToken($token) {
         try {
-            return JWT::decode($token, new Key(self::$secretKey, 'HS256'));
+            return JWT::decode($token, new Key(self::$secret, 'HS256'));
         } catch (\Exception $e) {
-            return false;
+            return null;
         }
     }
 }

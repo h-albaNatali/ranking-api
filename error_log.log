@@ -1,0 +1,267 @@
+[05-Mar-2025 04:06:11 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(67): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:06:14 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(67): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:06:15 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(67): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:10:10 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:11:05 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:11:18 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:11:42 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:11:45 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:12:09 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:12:12 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:13:24 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:13:27 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:14:33 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:16:30 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:16:33 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:16:34 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(68): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:20:48 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(69): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:20:50 Europe/Berlin] PHP Fatal error:  Uncaught Slim\Exception\HttpNotFoundException: Not found. in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php:76
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(62): Slim\Middleware\RoutingMiddleware->performRouting(Object(Slim\Psr7\Request))
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\public\index.php(69): Slim\App->run()
+#7 {main}
+  thrown in C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\RoutingMiddleware.php on line 76
+[05-Mar-2025 04:21:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Slim\Psr7\Response::withJson() in C:\xampp\htdocs\ranking-api\src\Controllers\AuthController.php:37
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\public\index.php(42): App\Controllers\AuthController->register(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Handlers\Strategies\RequestResponse.php(38): {closure}(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(363): Slim\Handlers\Strategies\RequestResponse->__invoke(Object(Closure), Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\Routing\Route->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(321): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(74): Slim\Routing\Route->run(Object(Slim\Psr7\Request))
+#7 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#8 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#9 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#10 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#11 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#12 C:\xampp\htdocs\ranking-api\public\index.php(69): Slim\App->run()
+#13 {main}
+  thrown in C:\xampp\htdocs\ranking-api\src\Controllers\AuthController.php on line 37
+[05-Mar-2025 04:22:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Slim\Psr7\Response::withJson() in C:\xampp\htdocs\ranking-api\src\Controllers\AuthController.php:24
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\public\index.php(42): App\Controllers\AuthController->register(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Handlers\Strategies\RequestResponse.php(38): {closure}(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(363): Slim\Handlers\Strategies\RequestResponse->__invoke(Object(Closure), Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\Routing\Route->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(321): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(74): Slim\Routing\Route->run(Object(Slim\Psr7\Request))
+#7 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#8 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#9 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#10 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#11 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#12 C:\xampp\htdocs\ranking-api\public\index.php(69): Slim\App->run()
+#13 {main}
+  thrown in C:\xampp\htdocs\ranking-api\src\Controllers\AuthController.php on line 24
+[05-Mar-2025 04:31:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Firebase\JWT\JWT" not found in C:\xampp\htdocs\ranking-api\src\Security\Auth.php:19
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\src\Controllers\AuthController.php(62): App\Security\Auth::generateToken(1)
+#1 C:\xampp\htdocs\ranking-api\public\index.php(47): App\Controllers\AuthController->login(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Handlers\Strategies\RequestResponse.php(38): {closure}(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(363): Slim\Handlers\Strategies\RequestResponse->__invoke(Object(Closure), Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\Routing\Route->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(321): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#7 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(74): Slim\Routing\Route->run(Object(Slim\Psr7\Request))
+#8 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#9 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#10 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#11 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#12 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#13 C:\xampp\htdocs\ranking-api\public\index.php(69): Slim\App->run()
+#14 {main}
+  thrown in C:\xampp\htdocs\ranking-api\src\Security\Auth.php on line 19
+[05-Mar-2025 04:35:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined method Slim\Psr7\Response::withJson() in C:\xampp\htdocs\ranking-api\src\Controllers\RankingController.php:24
+Stack trace:
+#0 C:\xampp\htdocs\ranking-api\public\index.php(53): App\Controllers\RankingController->getRanking(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#1 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Handlers\Strategies\RequestResponse.php(38): {closure}(Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#2 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(363): Slim\Handlers\Strategies\RequestResponse->__invoke(Object(Closure), Object(Slim\Psr7\Request), Object(Slim\Psr7\Response), Array)
+#3 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\Routing\Route->handle(Object(Slim\Psr7\Request))
+#4 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#5 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\Route.php(321): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#6 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Routing\RouteRunner.php(74): Slim\Routing\Route->run(Object(Slim\Psr7\Request))
+#7 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\Middleware\BodyParsingMiddleware.php(65): Slim\Routing\RouteRunner->handle(Object(Slim\Psr7\Request))
+#8 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(129): Slim\Middleware\BodyParsingMiddleware->process(Object(Slim\Psr7\Request), Object(Slim\Routing\RouteRunner))
+#9 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\MiddlewareDispatcher.php(73): Psr\Http\Server\RequestHandlerInterface@anonymous->handle(Object(Slim\Psr7\Request))
+#10 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(209): Slim\MiddlewareDispatcher->handle(Object(Slim\Psr7\Request))
+#11 C:\xampp\htdocs\ranking-api\vendor\slim\slim\Slim\App.php(193): Slim\App->handle(Object(Slim\Psr7\Request))
+#12 C:\xampp\htdocs\ranking-api\public\index.php(69): Slim\App->run()
+#13 {main}
+  thrown in C:\xampp\htdocs\ranking-api\src\Controllers\RankingController.php on line 24

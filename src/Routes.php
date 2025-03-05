@@ -1,11 +1,24 @@
 <?php
 
-use Slim\App;
-use App\Controllers\RankingController;
+use Slim\Factory\AppFactory;
 use App\Controllers\AuthController;
+use App\Controllers\RankingController;
 
-return function (App $app) {
-    $app->post('/register', [AuthController::class, 'register']); // Rota para criar usuário
-    $app->post('/login', [AuthController::class, 'login']); // Rota para login
-    $app->get('/ranking/{movement_id}', [RankingController::class, 'getRanking']); // Ranking protegido
-};
+$app = AppFactory::create();
+
+// Middleware para parsear JSON
+$app->addBodyParsingMiddleware();
+$app->addRoutingMiddleware();
+
+// Rota de autenticação
+$app->post('/register', [AuthController::class, 'register']);
+$app->post('/login', [AuthController::class, 'login']);
+
+// Rotas de ranking (autenticadas)
+$app->group('', function ($group) {
+    $group->get('/ranking/{movement_id}', [RankingController::class, 'getRanking']);
+    $group->post('/personal_record', [RankingController::class, 'addPersonalRecord']);
+})->add(new \App\Middleware\AuthMiddleware());
+
+// Run app
+$app->run();

@@ -1,48 +1,60 @@
-# 📊 API de Ranking - Slim Framework 4
+# 📌 Ranking API
 
-Esta é uma API RESTful construída com **PHP** e **Slim Framework 4** para gerenciar rankings de movimentos e usuários, utilizando **MySQL** como banco de dados.
+## 📖 Visão Geral
+A **Ranking API** é uma API REST desenvolvida para armazenar e consultar recordes pessoais dos usuários em diferentes movimentos esportivos. A API foi construída utilizando **PHP com Slim Framework**, e utiliza **JWT (JSON Web Token)** para autenticação.
 
-## 📌 Tecnologias Utilizadas
-- **PHP 8+**
-- **Slim Framework 4 (Microframework)**
-- **MySQL**
-- **Apache (XAMPP)**
-- **Composer**
-- **JWT (JSON Web Token) para Autenticação**
-- **Dotenv para Variáveis de Ambiente**
-- **Monolog para Log de Erros**
-- **APCu para Cache**
+Esta documentação contém todas as informações necessárias para a instalação, configuração e uso da API, bem como todas as respostas possíveis e a estrutura do banco de dados.
 
 ---
 
-## 🚀 Instalação e Configuração
+## 📌 Tecnologias Utilizadas
 
-### 📌 **1. Clonar o Repositório**
+- **PHP 8.x**
+- **Slim Framework 4**
+- **Composer** (gerenciador de dependências do PHP)
+- **MySQL** (Banco de dados relacional)
+- **JWT** (Autenticação via token)
+- **cURL/Postman** (Para testes de requisições)
+
+---
+
+## 🛠️ Instalação e Configuração
+
+### 1️⃣ **Clonar o Repositório**
 ```sh
-git clone git@github.com:h-albaNatali/ranking-api.git
-cd ranking-api
+ git clone https://github.com/seu-repositorio/ranking-api.git
+ cd ranking-api
 ```
 
-### 📌 **2. Instalar Dependências**
-Certifique-se de que o **Composer** está instalado e execute:
+### 2️⃣ **Instalar Dependências**
 ```sh
-composer install
+ composer install
 ```
 
-### 📌 **3. Configurar Banco de Dados**
-- Acesse o **phpMyAdmin**:  
-  👉 `http://localhost:8080/phpmyadmin/`
-- Crie o banco de dados:
-```sql
-CREATE DATABASE ranking_db;
+### 3️⃣ **Configurar o Arquivo `.env`**
+Copie o arquivo `.env.example` para `.env` e edite as configurações do banco de dados:
+```sh
+cp .env.example .env
 ```
-- Execute as tabelas no **SQL**:
+
+Edite o arquivo `.env` com as credenciais corretas:
+```
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=ranking_db
+DB_USERNAME=root
+DB_PASSWORD=
+JWT_SECRET=chave_secreta_super_segura
+JWT_EXPIRATION=3600
+```
+
+### 4️⃣ **Configurar Banco de Dados**
+Crie o banco de dados `ranking_db` e execute o seguinte SQL para criar as tabelas necessárias:
+
 ```sql
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE movement (
@@ -54,150 +66,113 @@ CREATE TABLE personal_record (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     movement_id INT NOT NULL,
-    value FLOAT NOT NULL,
-    date DATETIME NOT NULL,
+    value INT NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (movement_id) REFERENCES movement(id)
 );
+
+CREATE TABLE user_api (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
 ```
 
-### 📌 **4. Configurar Variáveis de Ambiente**
-
-Crie um arquivo **`.env`** na raiz do projeto e adicione as configurações do banco de dados:
-
-```ini
-DB_HOST=localhost
-DB_NAME=ranking_db
-DB_USER=root
-DB_PASS=senha_segura
-JWT_SECRET=chave_secreta_super_segura
-```
-
-⚠️ **Importante**: Nunca suba o arquivo `.env` para o Git. Adicione a linha abaixo no `.gitignore`:
-```sh
-.env
-```
-
-### 📌 **5. Iniciar o Servidor**
+### 5️⃣ **Rodar o Servidor**
 ```sh
 php -S localhost:8080 -t public
 ```
-Agora, a API estará disponível em:
-👉 `http://localhost:8080/ranking-api/public/`
 
 ---
 
-## 📌 **Endpoints Disponíveis**
+## 📌 Endpoints Disponíveis
 
-### 📌 **1. Registro de Usuário**
-**`POST /register`**
+### 🔹 **Registro de Usuário**
+**Rota:** `POST /register`
+```json
+{
+  "name": "João Silva",
+  "email": "joao@email.com",
+  "password": "senha123"
+}
+```
+**Respostas:**
+✅ `201 Created` → `{"message": "Usuário registrado com sucesso."}`
+❌ `400 Bad Request` → `{"error": "Email já cadastrado."}`
 
-📌 Registra um novo usuário na API.
+---
+### 🔹 **Login e Obtenção de Token**
+**Rota:** `POST /login`
+```json
+{
+  "email": "joao@email.com",
+  "password": "senha123"
+}
+```
+**Respostas:**
+✅ `200 OK` → `{"token": "seu-token-jwt"}`
+❌ `401 Unauthorized` → `{"error": "Credenciais inválidas."}`
 
-🔹 **Exemplo de Request:**
+---
+### 🔹 **Consultar Ranking de um Movimento** (Requer Token JWT)
+**Rota:** `GET /ranking/{movement_id}`
+**Cabeçalho:**
 ```sh
-POST http://localhost:8080/ranking-api/public/register
-Content-Type: application/json
-
-{
-    "name": "João Silva",
-    "email": "joao@email.com",
-    "password": "senha123"
-}
+-H "Authorization: Bearer seu-token-jwt"
 ```
 
-🔹 **Exemplo de Response (`201 Created`):**
+**Respostas:**
+✅ `200 OK`
 ```json
-{
-    "message": "Usuário registrado com sucesso."
-}
+[
+  {"name": "José", "movement_id": 1, "score": 190, "date": "2021-01-06"},
+  {"name": "João", "movement_id": 1, "score": 180, "date": "2021-01-02"}
+]
 ```
+❌ `401 Unauthorized` → `{"error": "Acesso não autorizado."}`
+❌ `404 Not Found` → `{"error": "Movimento não encontrado."}`
+❌ `500 Internal Server Error` → `{"error": "Erro ao buscar ranking."}`
 
 ---
 
-### 📌 **2. Autenticação**
-**`POST /login`**
+## 🚀 Testando a API com `cURL`
 
-📌 Gera um token JWT para acesso aos endpoints protegidos.
-
-🔹 **Exemplo de Request:**
+### **📌 Criar Usuário**
 ```sh
-POST http://localhost:8080/ranking-api/public/login
-Content-Type: application/json
-
-{
-    "email": "joao@email.com",
-    "password": "senha123"
-}
+curl -X POST "http://localhost:8080/register" -H "Content-Type: application/json" -d "{ \"name\": \"João Silva\", \"email\": \"joao@email.com\", \"password\": \"senha123\" }"
 ```
 
-🔹 **Exemplo de Response (`200 OK`):**
-```json
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
-
----
-
-### 📌 **3. Obter Ranking de um Movimento (Autenticado)**
-**`GET /ranking/{movement_id}`**
-
-📌 Retorna o ranking de um movimento, com **usuários ordenados por recorde**.
-
-🔹 **Exemplo de Request:**
+### **📌 Fazer Login**
 ```sh
-GET http://localhost:8080/ranking-api/public/ranking/1
-Authorization: Bearer SEU_TOKEN_AQUI
+curl -X POST "http://localhost:8080/login" -H "Content-Type: application/json" -d "{ \"email\": \"joao@email.com\", \"password\": \"senha123\" }"
 ```
 
-🔹 **Exemplo de Response (`200 OK`):**
-```json
-{
-    "movement_name": "Back Squat",
-    "ranking": [
-        {
-            "user_name": "João",
-            "personal_record": 130,
-            "date": "2021-01-01 00:00:00",
-            "position": 1
-        },
-        {
-            "user_name": "José",
-            "personal_record": 130,
-            "date": "2021-01-01 00:00:00",
-            "position": 1
-        }
-    ]
-}
-```
-
-🟥 **Se o movimento não existir (`404 Not Found`):**
-```json
-{
-    "error": "Movimento não encontrado."
-}
+### **📌 Consultar Ranking**
+```sh
+curl -X GET "http://localhost:8080/ranking/1" -H "Authorization: Bearer SEU_TOKEN"
 ```
 
 ---
 
-## 📌 **Segurança**
-✅ **Proteção contra SQL Injection**
-- Todas as consultas SQL utilizam **prepared statements** e `bindParam()` para evitar injeção de código malicioso.
+## ❌ Possíveis Erros e Soluções
 
-✅ **Autenticação JWT**
-- Implementada autenticação JWT, garantindo que apenas usuários autenticados possam acessar endpoints protegidos.
+| **Erro** | **Causa** | **Solução** |
+|----------|----------|-------------|
+| `{"error": "Email já cadastrado."}` | O email já existe no banco. | Tente outro email ou faça login. |
+| `{"error": "Credenciais inválidas."}` | Email ou senha errados. | Verifique os dados e tente novamente. |
+| `{"error": "Acesso não autorizado."}` | Token JWT inválido ou ausente. | Faça login e passe o token corretamente. |
+| `404 Not Found` | URL incorreta. | Verifique a URL e tente novamente. |
+| `500 Internal Server Error` | Erro na API. | Verifique os logs do servidor. |
 
-✅ **Tratamento de Erros Aprimorado**
-- Logs de erro são registrados para monitoramento.
-- Mensagens de erro genéricas são retornadas ao cliente para evitar exposição de informações sensíveis.
+---
 
-✅ **Uso de Variáveis de Ambiente**
-- As credenciais do banco de dados foram movidas para um arquivo **`.env`**, garantindo que informações sensíveis não fiquem hardcoded.
+## 📌 Conclusão
+Agora você tem a **Ranking API** totalmente configurada! 🚀
 
-✅ **Melhoria de Desempenho**
-- Implementação de **cache** para consultas frequentes, reduzindo carga no banco de dados.
-- Indexação de colunas críticas para otimizar buscas no banco de dados.
+Se precisar de suporte, entre em contato com o responsável pelo projeto. Boa codificação! 🔥
+
 
 ---
 
